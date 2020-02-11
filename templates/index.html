@@ -1,0 +1,12 @@
+<html>
+	<head>
+		<title>Todo App</title>
+	</head>
+	<body>
+		<ul>
+			{% for d in data %}  <!-- this is a jinja for loop. jinja is a templating engine used in flask to imbed non html inside of html files and to replace template strings and render html-->
+			<li>{{ d.description }}</li>
+			{% endfor %}  <!-- this is the end of the jinja for loop Jinja  -->
+		</ul>
+	</body>
+</html>
