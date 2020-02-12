@@ -3,6 +3,10 @@
 		<title>Todo App</title>
 	</head>
 	<body>
+		<form method="post" action="/todos/create">
+			<input type="text" name="description" />
+			<input type="submit" value="Create" />
+		</form>
 		<ul>
 			{% for d in data %}  <!-- this is a jinja for loop. jinja is a templating engine used in flask to imbed non html inside of html files and to replace template strings and render html-->
 			<li>{{ d.description }}</li>
