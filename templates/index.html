@@ -13,10 +13,10 @@
 			<input type="submit" value="Create" />
 		</form>
 		<div id="error" class="hidden">Something went wrong!</div>
-		<ul>
-			{% for d in data %}  <!-- this is a jinja for loop. jinja is a templating engine used in flask to imbed non html inside of html files and to replace template strings and render html-->
+		<ul id="todos">
+			{% for d in data %} 
 			<li>{{ d.description }}</li>
-			{% endfor %}  <!-- this is the end of the jinja for loop Jinja  -->
+			{% endfor %} 
 		</ul>
 		<script>
 			document.getElementById('form').onsubmit = function(e) {
@@ -30,18 +30,13 @@
 						'Content-Type': 'application/json'
 					}
 				})
-				.then(function(response) {
-					console.log('I am now returning response.json');
-					return response.json();
-					
-				})
-				.then(function(jsonResponse) {
-					console.log(jsonResponse);
-					const liItem = document.createElement('LI');
-					liItem.innerHTML = jsonResponse['description'];
-					document.getElementById('todos').appendChild(liItem);
-					document.getElementById('error').className = '';
-					console.log('performed hidden');
+        .then(response => response.json())
+        .then(jsonResponse => {
+          console.log('response', jsonResponse);
+          liItem = document.createElement('li');
+          liItem.innerHTML = jsonResponse['description'];
+          document.getElementById('todos').appendChild(liItem);
+					document.getElementById('error').className = 'hidden';
 				})
 				.catch(function() {
 					document.getElementById('error').className = '';
